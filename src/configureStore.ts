@@ -1,10 +1,23 @@
-import { ApplicationState, rootReducer } from "./store";
-import { Store, createStore } from "redux";
+import { ApplicationState, rootReducer, rootEpic } from "./store";
+import { Store, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { createEpicMiddleware } from "redux-observable";
+import { from } from "rxjs";
 
 export default function configureStore(
   initialState: ApplicationState
 ): Store<ApplicationState> {
   const composeEnhancers = composeWithDevTools({});
-  const store = createStore(rootReducer, initialState);
+  const epicMiddleware = createEpicMiddleware({
+    dependencies: {
+      getJSON$: (url: string) => from(fetch(url).then(res => res.json()))
+    }
+  });
+  const store = createStore(
+    rootReducer,
+    initialState as any,
+    composeEnhancers(applyMiddleware(epicMiddleware))
+  );
+  epicMiddleware.run(rootEpic as any);
+  return store;
 }
