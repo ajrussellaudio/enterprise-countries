@@ -1,5 +1,6 @@
 import { fetchCountries } from "./actions";
-import { CountriesActionTypes, Country } from "./types";
+import { CountriesActionTypes } from "./types";
+import { dummyCountries } from "./testHelpers";
 
 describe("Countries actions", () => {
   describe("FETCH_REQUEST", () => {
@@ -12,42 +13,6 @@ describe("Countries actions", () => {
 
   describe("FETCH_SUCCESS", () => {
     it("creates an action with countries as payload", () => {
-      const dummyCountries: Country[] = [
-        {
-          name: "Latveria",
-          population: 500000,
-          capital: "Doomstadt",
-          flag: "http://flags.com/latveria",
-          languages: [
-            {
-              iso639_1: "en",
-              iso639_2: "eng",
-              name: "English",
-              nativeName: "English"
-            }
-          ]
-        },
-        {
-          name: "Wakanda",
-          population: 1000000,
-          capital: "Birnin Zana",
-          flag: "http://flags.com/wakanda",
-          languages: [
-            {
-              iso639_1: "en",
-              iso639_2: "eng",
-              name: "English",
-              nativeName: "English"
-            },
-            {
-              iso639_1: "wk",
-              iso639_2: "wkn",
-              name: "Wakandan",
-              nativeName: "Wakando"
-            }
-          ]
-        }
-      ];
       expect(fetchCountries.success(dummyCountries)).toEqual({
         type: CountriesActionTypes.FETCH_SUCCESS,
         payload: dummyCountries
