@@ -2,6 +2,7 @@ import { TestScheduler } from "rxjs/testing";
 
 import { fetchCountriesEpic } from "./epics";
 import { CountriesActionTypes } from "./types";
+import { ActionsObservable } from "redux-observable";
 
 describe("fetchCountriesEpic", () => {
   const scheduler = new TestScheduler((actual, expected) => {
@@ -11,9 +12,11 @@ describe("fetchCountriesEpic", () => {
   it("fetches the countries", () => {
     scheduler.run(helpers => {
       const { hot, cold, expectObservable } = helpers;
-      const action$ = hot("-a", {
-        a: { type: CountriesActionTypes.FETCH_REQUEST }
-      });
+      const action$ = ActionsObservable.from(
+        hot("-a", {
+          a: { type: CountriesActionTypes.FETCH_REQUEST }
+        })
+      );
       const state = null;
       const services = {
         getJSON$: () =>
@@ -22,6 +25,12 @@ describe("fetchCountriesEpic", () => {
           })
       };
       const output$ = fetchCountriesEpic(action$, state, services);
+      expectObservable(output$).toBe("----a", {
+        a: {
+          type: CountriesActionTypes.FETCH_SUCCESS,
+          payload: []
+        }
+      });
     });
   });
 });
