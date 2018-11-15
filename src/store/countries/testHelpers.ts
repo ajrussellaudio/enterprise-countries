@@ -7,6 +7,8 @@ export const dummyCountries: Country[] = [
     population: 500000,
     capital: "Doomstadt",
     flag: "http://flags.com/latveria.png",
+    region: "Europe",
+    subregion: "Eastern Europe",
     languages: [
       {
         iso639_1: "en",
@@ -22,6 +24,8 @@ export const dummyCountries: Country[] = [
     population: 1000000,
     capital: "Birnin Zana",
     flag: "http://flags.com/wakanda.png",
+    region: "Africa",
+    subregion: "Central Africa",
     languages: [
       {
         iso639_1: "en",

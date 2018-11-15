@@ -4,6 +4,8 @@ export interface Country {
   population: number;
   capital: string;
   flag: string;
+  region: string;
+  subregion: string;
   languages: Array<{
     iso639_1: string;
     iso639_2: string;
