@@ -10,7 +10,8 @@ const initialState = {
   countries: {
     list: [],
     isLoading: false
-  }
+  },
+  filter: {}
 };
 
 const store = configureStore(initialState);

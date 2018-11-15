@@ -1,6 +1,6 @@
-import { FilterActionTypes, Language } from "./types";
+import { FilterActionTypes } from "./types";
 
-export const setLanguage = (language: Language) => ({
+export const setLanguage = (languageISOCode: string) => ({
   type: FilterActionTypes.SET_LANGUAGE,
-  payload: language
+  payload: languageISOCode
 });

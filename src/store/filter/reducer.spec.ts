@@ -16,8 +16,8 @@ describe("filterReducer", () => {
   });
 
   it("sets language in state", () => {
-    const expectedState = { language: dummyLanguage };
-    const action = setLanguage(dummyLanguage);
+    const expectedState = { language: dummyLanguage.iso639_2 };
+    const action = setLanguage(dummyLanguage.iso639_2);
     state = filterReducer(state, action);
     expect(state).toEqual(expectedState);
   });
