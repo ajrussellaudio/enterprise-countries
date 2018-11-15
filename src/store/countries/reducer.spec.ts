@@ -1,5 +1,5 @@
 import { countriesReducer } from "./reducer";
-import { CountriesState, Country } from "./types";
+import { CountriesState } from "./types";
 import { fetchCountries } from "./actions";
 import { dummyCountries } from "./testHelpers";
 
@@ -39,13 +39,13 @@ describe("countriesReducer", () => {
   });
 
   it("on failure, sets error to message, sets isLoading to false", () => {
-    const errorMessage = "Uh oh.";
+    const error = Error("Uh oh.");
     const expectedState = {
       list: [],
       isLoading: false,
-      error: errorMessage
+      error
     };
-    const action = fetchCountries.failure(errorMessage);
+    const action = fetchCountries.failure(error);
     state = countriesReducer(state, action);
     expect(state).toEqual(expectedState);
   });

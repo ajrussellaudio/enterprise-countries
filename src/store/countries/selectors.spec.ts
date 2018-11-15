@@ -5,7 +5,8 @@ import { ApplicationState } from "..";
 describe("getAllCountries", () => {
   it("gets all the countries in state", () => {
     const dummyState: ApplicationState = {
-      countries: { list: dummyCountries, isLoading: false }
+      countries: { list: dummyCountries, isLoading: false },
+      filter: {}
     };
     expect(getAllCountries(dummyState)).toEqual(dummyCountries);
   });
