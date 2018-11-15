@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./components/App.connect";
 import * as serviceWorker from "./serviceWorker";
 import configureStore from "./configureStore";
 import { Provider } from "react-redux";
+import "bulma/css/bulma.css";
+import "./index.css";
 
 const initialState = {
   countries: {

@@ -1,1 +1,1 @@
-export { default } from "./LanguageSelect.connect";
+export { default } from "./LanguageSelect.styled";
