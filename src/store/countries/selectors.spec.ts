@@ -1,6 +1,11 @@
-import { getAllCountries, getLanguages } from "./selectors";
+import {
+  getAllCountries,
+  getLanguages,
+  getCountriesByLanguage
+} from "./selectors";
 import { dummyCountries } from "./testHelpers";
 import { ApplicationState } from "..";
+import { Country } from "./types";
 
 describe("getAllCountries", () => {
   it("gets all the countries in state", () => {
@@ -33,5 +38,25 @@ describe("getAllLanguages", () => {
       }
     ];
     expect(getLanguages(dummyState)).toEqual(expectedLanguages);
+  });
+});
+
+describe("getCountriesByLanguage", () => {
+  it("gets all the countries who speak the language whose ISO code is in the filter", () => {
+    const dummyState: ApplicationState = {
+      countries: { list: dummyCountries, isLoading: false },
+      filter: { language: "wkn" }
+    };
+    const expectedCountries: Country[] = [dummyCountries[1]];
+    expect(getCountriesByLanguage(dummyState)).toEqual(expectedCountries);
+  });
+
+  it("returns all countries when filter is empty", () => {
+    const dummyState: ApplicationState = {
+      countries: { list: dummyCountries, isLoading: false },
+      filter: {}
+    };
+    const expectedCountries: Country[] = dummyCountries;
+    expect(getCountriesByLanguage(dummyState)).toEqual(expectedCountries);
   });
 });

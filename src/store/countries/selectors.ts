@@ -1,8 +1,9 @@
 import { ApplicationState } from "..";
 import { createSelector } from "reselect";
-import { uniqBy } from "lodash";
+import { uniqBy, isEmpty } from "lodash";
 import { Country } from "./types";
 import { Language } from "../filter/types";
+import { getFilter } from "../filter/selectors";
 
 export const getAllCountries = (state: ApplicationState) =>
   state.countries.list;
@@ -20,4 +21,16 @@ export const getLanguages = createSelector(
       ),
       "iso639_1"
     )
+);
+
+export const getCountriesByLanguage = createSelector(
+  [getAllCountries, getFilter],
+  (countries: Country[], filter) =>
+    isEmpty(filter)
+      ? countries
+      : countries.filter(country =>
+          country.languages.some(
+            language => language.iso639_2 === filter.language
+          )
+        )
 );

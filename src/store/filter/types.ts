@@ -6,7 +6,7 @@ export interface Language {
 }
 
 export interface FilterState {
-  language?: Language;
+  language?: string;
 }
 
 export enum FilterActionTypes {
