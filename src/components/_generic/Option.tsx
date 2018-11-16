@@ -5,7 +5,8 @@ export interface OptionProps {
   value?: any;
 }
 
-export default (props: OptionProps) => {
-  const { label, value } = props;
-  return <option value={value || label}>{label}</option>;
-};
+const Option: React.SFC<OptionProps> = ({ label, value }) => (
+  <option value={value || label}>{label}</option>
+);
+
+export default Option;

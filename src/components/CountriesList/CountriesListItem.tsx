@@ -1,14 +1,14 @@
 import React from "react";
 import { Country } from "../../store/countries/types";
 
-export default ({
+const CountriesListItem: React.SFC<Country> = ({
   name,
   region,
   subregion,
   flag,
   population,
   capital
-}: Country) => (
+}) => (
   <article className="media">
     <figure className="media-left">
       <p className="image is-128x128">
@@ -29,3 +29,5 @@ export default ({
     </div>
   </article>
 );
+
+export default CountriesListItem;

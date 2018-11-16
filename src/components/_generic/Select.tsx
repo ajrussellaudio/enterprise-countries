@@ -7,15 +7,14 @@ export interface SelectProps {
   onChange: (value: any) => void;
 }
 
-export default (props: SelectProps) => {
-  const { options, onChange, ...rest } = props;
+const Select: React.SFC<SelectProps> = ({ options, onChange, ...rest }) => {
   const optionNodes = options.map(option => (
     <Option key={option.label} {...option} />
   ));
 
-  const handleChange: React.ChangeEventHandler = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => onChange(event.target.value);
+  const handleChange: React.ChangeEventHandler = ({
+    target: { value }
+  }: React.ChangeEvent<HTMLSelectElement>) => onChange(value);
 
   return (
     <select {...rest} onChange={handleChange}>
@@ -23,3 +22,5 @@ export default (props: SelectProps) => {
     </select>
   );
 };
+
+export default Select;

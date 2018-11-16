@@ -17,12 +17,15 @@ export const mapLanguageToOption = (language: Language): OptionProps => ({
 export const mapLanguagesToOptions = (languages: Language[]): OptionProps[] =>
   sortBy(languages.map(mapLanguageToOption), "label");
 
-const LanguageSelect = (props: LanguageSelectProps) => {
+const LanguageSelect: React.SFC<LanguageSelectProps> = ({
+  languages,
+  setLanguage
+}) => {
   return (
     <Select
       placeholder="Select a language..."
-      options={mapLanguagesToOptions(props.languages)}
-      onChange={props.setLanguage}
+      options={mapLanguagesToOptions(languages)}
+      onChange={setLanguage}
     />
   );
 };

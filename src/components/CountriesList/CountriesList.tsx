@@ -6,7 +6,7 @@ export interface CountriesListProps {
   countries: Country[];
 }
 
-const CountriesList = ({ countries }: CountriesListProps) => (
+const CountriesList: React.SFC<CountriesListProps> = ({ countries }) => (
   <React.Fragment>
     {countries.map(country => (
       <CountriesListItem key={country.alpha2Code} {...country} />
