@@ -1,4 +1,4 @@
-import { ApplicationState, rootReducer, rootEpic } from "./store";
+import { ApplicationState, rootReducer, rootEpic } from "./";
 import { Store, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createEpicMiddleware } from "redux-observable";
