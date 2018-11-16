@@ -1,3 +1,7 @@
 import { ApplicationState } from "..";
+import { Selector } from "reselect";
+import { FilterState } from "./types";
 
-export const getFilter = (state: ApplicationState) => state.filter;
+export const getFilter: Selector<ApplicationState, FilterState> = (
+  state: ApplicationState
+) => state.filter;

@@ -1,21 +1,24 @@
 import { ApplicationState } from "..";
-import { createSelector } from "reselect";
+import { createSelector, Selector } from "reselect";
 import { uniqBy, isEmpty } from "lodash";
 import { Country } from "./types";
 import { Language } from "../filter/types";
 import { getFilter } from "../filter/selectors";
 
-export const getAllCountries = (state: ApplicationState) =>
+export const getAllCountries: Selector<ApplicationState, Country[]> = state =>
   state.countries.list;
 
-export const getLanguages = createSelector(
+export const getLanguages: Selector<
+  ApplicationState,
+  Language[]
+> = createSelector(
   getAllCountries,
   (countries: Country[]) =>
     uniqBy(
       countries.reduce(
-        (languages: Language[], country: Country) => [
-          ...languages,
-          ...country.languages
+        (allLanguages: Language[], { languages }: Country) => [
+          ...allLanguages,
+          ...languages
         ],
         []
       ),
@@ -23,7 +26,10 @@ export const getLanguages = createSelector(
     )
 );
 
-export const getCountriesByLanguage = createSelector(
+export const getCountriesByLanguage: Selector<
+  ApplicationState,
+  Country[]
+> = createSelector(
   [getAllCountries, getFilter],
   (countries: Country[], filter) =>
     isEmpty(filter)
